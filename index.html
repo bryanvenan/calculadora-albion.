@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albion Pro Tycoon - Domine o Mercado</title>
+    <style>
+        :root {
+            --gold: #ffcc00; --bg: #0a0a0a; --card: #161616;
+            --green: #27ae60; --premium-btn: linear-gradient(90deg, #f39c12, #d35400);
+        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; margin: 0; scroll-behavior: smooth; }
+        
+        /* Navbar */
+        nav { display: flex; justify-content: space-between; padding: 20px 10% ; background: rgba(0,0,0,0.8); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #333; }
+        .logo { font-weight: bold; color: var(--gold); font-size: 1.5rem; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
+
+        /* Hero Section */
+        .hero { text-align: center; padding: 100px 10%; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.wallpapersden.com/image/download/albion-online-game_a2htbW6UmZqaraWkpJRma21lrWllZ2U.jpg'); background-size: cover; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; color: var(--gold); }
+        .hero p { font-size: 1.2rem; color: #ccc; max-width: 700px; margin: 0 auto 30px; }
+        .cta-button { padding: 15px 40px; background: var(--premium-btn); border: none; color: white; font-weight: bold; border-radius: 50px; cursor: pointer; font-size: 1.1rem; text-decoration: none; }
+
+        /* Pricing Table */
+        .pricing { padding: 80px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .price-card { background: var(--card); padding: 40px; border-radius: 15px; border: 1px solid #333; text-align: center; transition: 0.3s; }
+        .price-card.pro { border: 2px solid var(--gold); transform: scale(1.05); }
+        .price-card h3 { font-size: 1.8rem; margin-top: 0; }
+        .price-card .cost { font-size: 2.5rem; font-weight: bold; margin: 20px 0; }
+        .price-card ul { list-style: none; padding: 0; margin: 30px 0; color: #aaa; }
+        .price-card li { margin-bottom: 10px; }
+
+        /* Interface da Calculadora (Área Logada) */
+        .app-section { padding: 60px 10%; background: #111; display: none; } /* Escondida até clicar em testar */
+        .login-box { max-width: 400px; margin: 50px auto; background: var(--card); padding: 30px; border-radius: 10px; text-align: center; }
+
+        footer { text-align: center; padding: 40px; border-top: 1px solid #333; color: #666; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">ALBION TYCOON PRO</div>
+    <div class="nav-links">
+        <a href="#precos">Preços</a>
+        <a href="#" onclick="showLogin()">Acessar Painel</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>Pare de Perder Prata.</h1>
+    <p>A primeira calculadora de arbitragem em tempo real que diz EXATAMENTE onde comprar e onde vender para lucrar milhões.</p>
+    <a href="#precos" class="cta-button">COMEÇAR AGORA</a>
+</section>
+
+<section class="pricing" id="precos">
+    <div class="price-card">
+        <h3>Explorador</h3>
+        <div class="cost">R$ 0</div>
+        <ul>
+            <li>Cálculos básicos T3 e T4</li>
+            <li>Apenas itens .0 (Sem encanto)</li>
+            <li>Preços de 2 Cidades Reais</li>
+            <li>❌ Sem cálculo de Foco</li>
+        </ul>
+        <button class="cta-button" style="background: #444;" onclick="showApp('free')">USAR GRÁTIS</button>
+    </div>
+
+    <div class="price-card pro">
+        <div style="background: var(--gold); color: black; font-size: 0.7rem; font-weight: bold; padding: 5px; border-radius: 5px; width: 80px; margin: -50px auto 20px;">MAIS POPULAR</div>
+        <h3>Magnata Pro</h3>
+        <div class="cost">R$ 19,90<small>/mês</small></div>
+        <ul>
+            <li>Todos os Tiers (T3 ao T8.4)</li>
+            <li>Todos os Encantamentos (.1 a .4)</li>
+            <li>Rotas para Caerleon e Black Zone</li>
+            <li>Cálculo de Lucro por Foco</li>
+            <li>Suporte VIP no Discord</li>
+        </ul>
+        <button class="cta-button" onclick="alert('Aqui você integraria o link do Mercado Pago ou Stripe!')">ASSINAR AGORA</button>
+    </div>
+</section>
+
+<div id="loginArea" class="login-box" style="display:none;">
+    <h2>Área do Membro</h2>
+    <input type="email" placeholder="Seu e-mail" style="width:90%; padding:10px; margin-bottom:10px;"><br>
+    <input type="password" placeholder="Sua senha" style="width:90%; padding:10px; margin-bottom:20px;"><br>
+    <button class="cta-button" onclick="showApp('pro')">ENTRAR NO PAINEL</button>
+</div>
+
+<section id="mainApp" class="app-section">
+    <div style="background: #1e1e1e; padding: 30px; border-radius: 15px; border: 1px solid var(--gold);">
+        <h2 id="appTitle">Painel de Arbitragem Premium</h2>
+        <p style="color: #888;">[ Interface de Cálculo Liberada ]</p>
+        <button class="cta-button" onclick="location.reload()">Sair do Painel</button>
+    </div>
+</section>
+
+<footer>
+    &copy; 2026 Albion Tycoon Pro - Ferramenta Independente. Não afiliada à Sandbox Interactive.
+</footer>
+
+<script>
+    function showLogin() {
+        document.getElementById('precos').style.display = 'none';
+        document.getElementById('loginArea').style.display = 'block';
+    }
+
+    function showApp(plan) {
+        document.getElementById('precos').style.display = 'none';
+        document.getElementById('loginArea').style.display = 'none';
+        document.getElementById('hero').style.display = 'none';
+        document.getElementById('mainApp').style.display = 'block';
+        
+        if(plan === 'free') {
+            document.getElementById('appTitle').innerText = "Painel Versão Grátis (Limitada)";
+        }
+    }
+</script>
+
+</body>
+</html>
